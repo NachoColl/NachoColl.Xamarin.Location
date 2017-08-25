@@ -6,6 +6,15 @@ This library will only give you a single location each time you call the method 
 
 *For now I just published the Android library. Will update the iOS version soon ...*
 
+**Android Notes:**
+
+The library will try to use GooglePlayServices to get the location if they are available, or the original AOSP location library if Google libraries are not installed on the device.
+
+**iOS Notes:**
+
+*TO-DO*
+
+
 # How to Install
 
 *Working on the Nuget package...*
