@@ -8,6 +8,10 @@ Just a Location library for Xamarin.
 For now I just published the Android library:
 
 ```
-Android.Locations.Location location = 
-   await new NachoColl.Xamarin.Location.Droid.CustomLocationManager().GetSingleLocation();
+try {
+   Android.Locations.Location location = 
+      await new NachoColl.Xamarin.Location.Droid.CustomLocationManager().GetSingleLocation();
+}catch{
+ // you need to catch (e.g. TimeOut will trigger an Exception).
+}
 ```
