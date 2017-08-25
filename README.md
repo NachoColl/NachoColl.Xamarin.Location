@@ -30,27 +30,24 @@ Call GetSingleLocation() with optional parameters:
 
 I've tested the default values and calling GetSingleLocation() should be good enough in most scenarios.
 
-```
+```cs
 location = await new NachoColl.Xamarin.Location.Droid.CustomLocationManager().GetSingleLocation();
 ```
 
 
-To use it correctly you must check the Location permission before calling and also check for the related exceptions that may be triggered.
+To use it correctly you must check the Location permission before calling and also catch for the related exceptions that may be triggered (e.g. Time Out).
 
-```
+```cs
 Android.Locations.Location location = null;
 try {
 
     if (CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location).Result 
-         == PermissionStatus.Granted) {            
+         == PermissionStatus.Granted) { 
+         
         location = await new NachoColl.Xamarin.Location.Droid.CustomLocationManager().GetSingleLocation();
-        if(location!=null)
-            LogFile.WriteLogEntry(string.Format("Lat: {0}, Lon: {1}, Accuracy: {2}, Timestamp: {3}", location.Latitude,
-                  location.Longitude, location.Accuracy, Timestamp.FromUnixTimeStamp(location.Time).ToUniversalTime()));
     }
     return location;
-} catch (Exception e) {  // you need to catch (e.g. TimeOut will trigger an Exception).
-    LogFile.WriteLogEntry(e);
+} catch { 
     return null;
 }
 ```
